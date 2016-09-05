@@ -1,13 +1,10 @@
 {
   "version": "1.0.0-*",
-
   "dependencies": {
-    "System.Collections": "4.0.11",
-    "System.Runtime": "4.1.0"
+    "Microsoft.AspNet.WebApi.Client": "5.2.3"
   },
-
   "frameworks": {
-    "netstandard1.0": {
+    "net4.5": {
     }
   }
 }
