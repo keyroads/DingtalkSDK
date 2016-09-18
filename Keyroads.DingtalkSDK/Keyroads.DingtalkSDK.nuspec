@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Keyroads.DingtalkSDK</id>
+    <version>$version$</version>
+    <title>DingtalkSDK</title>
+    <authors>heavenwing</authors>
+    <owners>Keyroads</owners>
+    <licenseUrl>https://github.com/keyroads/DingtalkSDK/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/keyroads/DingtalkSDK</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET SDK for Dingtalk</description>
+    <copyright>Copyright 2016 Keyroads</copyright>
+    <tags>Dingtalk SDK</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+    </dependencies>
+  </metadata>
+</package>
