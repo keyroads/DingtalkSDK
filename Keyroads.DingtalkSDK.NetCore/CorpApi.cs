@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Keyroads.DingtalkSDK
 {
@@ -23,6 +24,21 @@ namespace Keyroads.DingtalkSDK
         {
             return await CommonApi.AccessDingtalkServerAsync<GetUserInfoResponse>(
                 $"https://oapi.dingtalk.com/user/getuserinfo?access_token={accessToken}&code={code}", null, "GET");
+        }
+
+        public static async Task<string> GetToken(string corpId, string corpSecret, IAccessTokenCacher cacher = null)
+        {
+            if (cacher == null) cacher = new MemoryAccessTokenCacher();
+            var token = await cacher.GetAsync(corpId, corpSecret);
+            if (!string.IsNullOrEmpty(token)) return token;
+            var result = await CommonApi.AccessDingtalkServerAsync<GetTokenResponse>(
+                $"https://oapi.dingtalk.com/gettoken?corpid={corpId}&corpsecret={corpSecret}", null, "GET");
+            if (result.errcode == 0)
+            {
+                await cacher.SetAsync(corpId, corpSecret, result.access_token, DateTime.Now.AddSeconds(7200));
+                return result.access_token;
+            }
+            throw new Exception($"errcode: {result.errcode}, errmsg: {result.errmsg}");
         }
     }
 }

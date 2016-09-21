@@ -67,4 +67,16 @@ namespace Keyroads.DingtalkSDK
             return !string.IsNullOrEmpty(userid);
         }
     }
+
+    public class GetTokenRequest
+    {
+        public string corpid { get; set; }
+
+        public string corpsecret { get; set; }
+    }
+
+    public class GetTokenResponse : ErrorResponse
+    {
+        public string access_token { get; set; }
+    }
 }
