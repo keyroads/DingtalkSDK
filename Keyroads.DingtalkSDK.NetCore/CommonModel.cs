@@ -15,4 +15,16 @@
             return true;
         }
     }
+
+    public class BaseGetRequest
+    {
+        public string access_token { get; set; }
+    }
+
+    public class BaseGetContactRequest : BaseGetRequest
+    {
+        public string lang { get; set; } = "zh_CN";
+
+        public string id { get; set; }
+    }
 }

@@ -1,7 +1,10 @@
 {
   "version": "1.0.0-*",
   "dependencies": {
-    "Microsoft.AspNet.WebApi.Client": "5.2.3"
+    "System.Threading.Tasks": "4.0.0", 
+    "Newtonsoft.Json": "9.0.1",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3",
+    "Nito.AsyncEx": "3.0.1"
   },
   "frameworks": {
     "net4.5": {

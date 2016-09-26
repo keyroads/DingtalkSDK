@@ -1,16 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Keyroads.DingtalkSDK
 {
     public static class CorpApi
     {
-        public static async Task<DepartmentMemberInfoResponse> GetDepartmentMemberInfo(string accessToken, DepartmentMemberInfoRequest requestData)
+        public static async Task<DepartmentListResponse> GetDepartmentList(BaseGetContactRequest request)
         {
-            var result = await CommonApi.AccessDingtalkServerAsync<DepartmentMemberInfoResponse>(
-                $"https://oapi.dingtalk.com/user/list?access_token={accessToken}&department_id={requestData.DepartmentID}&lang={requestData.Lang}&" +
-                $"offset={requestData.Offset}&size={requestData.Size}&order={requestData.Order}",
+            var result = await CommonApi.AccessDingtalkServerAsync<DepartmentListResponse>(
+               $"https://oapi.dingtalk.com/department/list?access_token={request.access_token}&lang={request.lang}&id={request.id}",
+               null, "GET");
+            return result;
+        }
+
+        public static async Task<UserListResponse> GetUserList(UserListGetRequest request)
+        {
+            var result = await CommonApi.AccessDingtalkServerAsync<UserListResponse>(
+                $"https://oapi.dingtalk.com/user/list?access_token={request.access_token}&department_id={request.department_id}" ,//+
+                //$"&lang={request.lang}&offset={request.offset}&size={request.size}&order={request.order}",
                 null, "GET");
+            return result;
+        }
+
+        /// <summary>
+        /// 得到某个部门下面所有（包括子部门）的成员列表
+        /// </summary>
+        /// <param name="request">request.id为部门id</param>
+        /// <returns></returns>
+        public static async Task<UserListResponse> GetAllUserList(BaseGetContactRequest request)
+        {
+            var result = await GetUserList(
+                    new UserListGetRequest { access_token = request.access_token, department_id = long.Parse(request.id) });
+            if (result.errcode != 0) return result;
+
+            var resultGetDepartmentList = await GetDepartmentList(request);
+            foreach (var info in resultGetDepartmentList.department)
+            {
+                var resultGetUserList = await GetUserList(
+                    new UserListGetRequest { access_token = request.access_token, department_id = info.id });
+                if (resultGetUserList.errcode != 0)
+                {
+                    return resultGetUserList;
+                }
+                result.userList.AddRange(resultGetUserList.userList);
+            }
             return result;
         }
 
@@ -41,4 +75,5 @@ namespace Keyroads.DingtalkSDK
             throw new Exception($"errcode: {result.errcode}, errmsg: {result.errmsg}");
         }
     }
+
 }

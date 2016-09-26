@@ -2,25 +2,38 @@
 
 namespace Keyroads.DingtalkSDK
 {
-    public class DepartmentMemberInfoRequest
+    public class DepartmentListResponse : ErrorResponse
     {
-        public string Lang { get; set; } = "zh_CN";
-        public long DepartmentID { get; set; }
-        public long Offset { get; set; } = 100;
-        public int Size { get; set; } = 100;
-        public string Order { get; set; } = "entry_asc";
+        public List<DepartmentListInfo> department { get; set; }
     }
 
-    public class DepartmentMemberInfoResponse : ErrorResponse
+    public class DepartmentListInfo
+    {
+        public long id { get; set; }
+        public string name { get; set; }
+        public long parentid { get; set; }
+        public bool createDeptGroup { get; set; }
+        public bool autoAddUser { get; set; }
+    }
+
+    public class UserListGetRequest : BaseGetContactRequest
+    {
+        public long department_id { get; set; }
+        public long offset { get; set; } = 100;
+        public int size { get; set; } = 100;
+        public string order { get; set; } = "entry_asc";
+    }
+
+    public class UserListResponse : ErrorResponse
     {
         public bool hasMore { get; set; }
-        public List<DepartmentMemberInfo> userList { get; set; }
+        public List<UserListInfo> userList { get; set; }
     }
 
-    public class DepartmentMemberInfo
+    public class UserListInfo
     {
         public string userid { get; set; }
-        public int order { get; set; }
+        public long order { get; set; }
         public string dingId { get; set; }
         public string mobile { get; set; }
         public string tel { get; set; }
@@ -32,7 +45,7 @@ namespace Keyroads.DingtalkSDK
         public bool isLeader { get; set; }
         public string name { get; set; }
         public bool active { get; set; }
-        public List<int> department { get; set; }
+        public int[] department { get; set; }
         public string position { get; set; }
         public string orgEmail { get; set; }
         public string email { get; set; }
