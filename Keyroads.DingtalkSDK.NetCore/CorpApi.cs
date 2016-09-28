@@ -17,8 +17,8 @@ namespace Keyroads.DingtalkSDK
         public static async Task<UserListResponse> GetUserList(UserListGetRequest request)
         {
             var result = await CommonApi.AccessDingtalkServerAsync<UserListResponse>(
-                $"https://oapi.dingtalk.com/user/list?access_token={request.access_token}&department_id={request.department_id}" ,//+
-                //$"&lang={request.lang}&offset={request.offset}&size={request.size}&order={request.order}",
+                $"https://oapi.dingtalk.com/user/list?access_token={request.access_token}&department_id={request.department_id}",//+
+                                                                                                                                 //$"&lang={request.lang}&offset={request.offset}&size={request.size}&order={request.order}",
                 null, "GET");
             return result;
         }
@@ -48,10 +48,20 @@ namespace Keyroads.DingtalkSDK
             return result;
         }
 
-        public static async Task<GetJsApiTicketResponse> GetJsApiTicketAsync(string accessToken)
+        public static async Task<string> GetJsApiTicket(string accessToken, IJsApiTicketCacher cacher = null)
         {
-            return await CommonApi.AccessDingtalkServerAsync<GetJsApiTicketResponse>(
+            if (cacher == null) cacher = new MemoryJsApiTicketCacher();
+            var ticket = await cacher.GetAsync(accessToken);
+            if (!string.IsNullOrEmpty(ticket)) return ticket;
+
+            var result= await CommonApi.AccessDingtalkServerAsync<GetJsApiTicketResponse>(
                 $"https://oapi.dingtalk.com/get_jsapi_ticket?access_token={accessToken}&type=jsapi", null, "GET");
+            if (result.errcode == 0)
+            {
+                await cacher.SetAsync(accessToken, result.ticket, DateTime.Now.AddSeconds(7200));
+                return result.ticket;
+            }
+            throw new Exception($"errcode: {result.errcode}, errmsg: {result.errmsg}");
         }
 
         public static async Task<GetUserInfoResponse> GetUserInfo(string accessToken, string code)
@@ -65,6 +75,7 @@ namespace Keyroads.DingtalkSDK
             if (cacher == null) cacher = new MemoryAccessTokenCacher();
             var token = await cacher.GetAsync(corpId, corpSecret);
             if (!string.IsNullOrEmpty(token)) return token;
+
             var result = await CommonApi.AccessDingtalkServerAsync<GetTokenResponse>(
                 $"https://oapi.dingtalk.com/gettoken?corpid={corpId}&corpsecret={corpSecret}", null, "GET");
             if (result.errcode == 0)
@@ -75,5 +86,4 @@ namespace Keyroads.DingtalkSDK
             throw new Exception($"errcode: {result.errcode}, errmsg: {result.errmsg}");
         }
     }
-
 }

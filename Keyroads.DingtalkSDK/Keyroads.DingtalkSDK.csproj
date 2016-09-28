@@ -84,6 +84,9 @@
     <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IAccessTokenCacher.cs">
       <Link>IAccessTokenCacher.cs</Link>
     </Compile>
+    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IJsApiTicketCacher.cs">
+      <Link>IJsApiTicketCacher.cs</Link>
+    </Compile>
     <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IsvApi.cs">
       <Link>IsvApi.cs</Link>
     </Compile>

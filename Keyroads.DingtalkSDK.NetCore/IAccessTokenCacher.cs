@@ -13,9 +13,6 @@ namespace Keyroads.DingtalkSDK
 
     public class MemoryAccessTokenCacher : IAccessTokenCacher
     {
-        /// <summary>
-        /// Tuple.Item1=corpSecret,Tuple.Item2=accessToken,Tuple.Item3=accessTokenExpiredTime
-        /// </summary>
         private static readonly ConcurrentDictionary<string, AccessTokenInfo> Cache =
             new ConcurrentDictionary<string, AccessTokenInfo>();
 
