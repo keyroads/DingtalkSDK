@@ -21,10 +21,15 @@
         public string access_token { get; set; }
     }
 
-    public class BaseGetContactRequest : BaseGetRequest
+    public class DepartmentBaseGetRequest : BaseGetRequest
     {
-        public string lang { get; set; } = "zh_CN";
-
         public string id { get; set; }
+        public string lang { get; set; } = "zh_CN";
+    }
+
+    public class UserBaseGetRequest : BaseGetRequest
+    {
+        public string userid { get; set; }
+        public string lang { get; set; } = "zh_CN";
     }
 }

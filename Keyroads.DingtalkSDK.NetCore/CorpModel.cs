@@ -16,7 +16,7 @@ namespace Keyroads.DingtalkSDK
         public bool autoAddUser { get; set; }
     }
 
-    public class UserListGetRequest : BaseGetContactRequest
+    public class UserListGetRequest : DepartmentBaseGetRequest
     {
         public long department_id { get; set; }
         public long offset { get; set; } = 100;
@@ -30,27 +30,34 @@ namespace Keyroads.DingtalkSDK
         public List<UserListInfo> userList { get; set; }
     }
 
-    public class UserListInfo
+    public class UserGetResponse : ErrorResponse
     {
         public string userid { get; set; }
-        public long order { get; set; }
-        public string dingId { get; set; }
-        public string mobile { get; set; }
+        public string name { get; set; }
         public string tel { get; set; }
         public string workPlace { get; set; }
         public string remark { get; set; }
+        public string mobile { get; set; }
+        public string email { get; set; }
+        public string orgEmail { get; set; }
+        public bool active { get; set; }
+        //orderInDepts
         public bool isAdmin { get; set; }
         public bool isBoss { get; set; }
+        public string dingId { get; set; }
+        //isLeaderInDepts
         public bool isHide { get; set; }
-        public bool isLeader { get; set; }
-        public string name { get; set; }
-        public bool active { get; set; }
         public int[] department { get; set; }
         public string position { get; set; }
-        public string orgEmail { get; set; }
-        public string email { get; set; }
         public string avatar { get; set; }
         public string jobnumber { get; set; }
+        //extattr
+    }
+
+    public class UserListInfo : UserGetResponse
+    {
+        public long order { get; set; }
+        public bool isLeader { get; set; }
     }
 
     public class GetJsApiTicketResponse : ErrorResponse

@@ -6,7 +6,7 @@ namespace Keyroads.DingtalkSDK
 {
     public static class CorpApi
     {
-        public static async Task<DepartmentListResponse> GetDepartmentList(BaseGetContactRequest request)
+        public static async Task<DepartmentListResponse> GetDepartmentList(DepartmentBaseGetRequest request)
         {
             var result = await CommonApi.AccessDingtalkServerAsync<DepartmentListResponse>(
                $"https://oapi.dingtalk.com/department/list?access_token={request.access_token}&lang={request.lang}&id={request.id}",
@@ -28,7 +28,7 @@ namespace Keyroads.DingtalkSDK
         /// </summary>
         /// <param name="request">request.id为部门id</param>
         /// <returns></returns>
-        public static async Task<UserListResponse> GetAllUserList(BaseGetContactRequest request)
+        public static async Task<UserListResponse> GetAllUserList(DepartmentBaseGetRequest request)
         {
             var result = await GetUserList(
                     new UserListGetRequest { access_token = request.access_token, department_id = long.Parse(request.id) });
@@ -84,6 +84,12 @@ namespace Keyroads.DingtalkSDK
                 return result.access_token;
             }
             throw new Exception($"errcode: {result.errcode}, errmsg: {result.errmsg}");
+        }
+
+        public static async Task<UserGetResponse> GetUser(UserBaseGetRequest request)
+        {
+            return await CommonApi.AccessDingtalkServerAsync<UserGetResponse>(
+                $"https://oapi.dingtalk.com/user/get?access_token={request.access_token}&userid={request.userid}", null, "GET");
         }
     }
 }
