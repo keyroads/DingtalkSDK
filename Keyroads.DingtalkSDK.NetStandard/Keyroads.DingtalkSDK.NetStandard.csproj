@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Keyroads.DingtalkSDK.NetStandard</AssemblyName>
+    <RootNamespace>Keyroads.DingtalkSDK</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>heavenwing</Authors>
+    <Company>Keyroads</Company>
+    <Product>Keyroads.DingtalkSDK</Product>
+    <Description>.NET SDK for Dingtalk</Description>
+    <Copyright>Copyright 2017 Keyroads</Copyright>
+    <PackageLicenseUrl>https://github.com/keyroads/DingtalkSDK/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/keyroads/DingtalkSDK</PackageProjectUrl>
+    <PackageTags>Dingtalk SDK</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Keyroads.DingtalkSDK\CommonApi.cs" Link="CommonApi.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\CommonModel.cs" Link="CommonModel.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\CorpApi.cs" Link="CorpApi.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\CorpModel.cs" Link="CorpModel.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\Cryptography.cs" Link="Cryptography.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\DingTalkCrypt.cs" Link="DingTalkCrypt.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\IAccessTokenCacher.cs" Link="IAccessTokenCacher.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\IJsApiTicketCacher.cs" Link="IJsApiTicketCacher.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\IsvApi.cs" Link="IsvApi.cs" />
+    <Compile Include="..\Keyroads.DingtalkSDK\IsvModel.cs" Link="IsvModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
+    <PackageReference Include="Nito.AsyncEx" Version="4.0.1" />
+  </ItemGroup>
+
+</Project>

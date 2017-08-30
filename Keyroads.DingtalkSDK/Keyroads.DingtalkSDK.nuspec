@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/keyroads/DingtalkSDK</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET SDK for Dingtalk</description>
-    <copyright>Copyright 2016 Keyroads</copyright>
+    <copyright>Copyright 2017 Keyroads</copyright>
     <tags>Dingtalk SDK</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="9.0.1" />

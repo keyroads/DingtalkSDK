@@ -69,36 +69,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\CommonApi.cs">
-      <Link>CommonApi.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\CommonModel.cs">
-      <Link>CommonModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\CorpApi.cs">
-      <Link>CorpApi.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\CorpModel.cs">
-      <Link>CorpModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\Cryptography.cs">
-      <Link>Cryptography.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\DingTalkCrypt.cs">
-      <Link>DingTalkCrypt.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IAccessTokenCacher.cs">
-      <Link>IAccessTokenCacher.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IJsApiTicketCacher.cs">
-      <Link>IJsApiTicketCacher.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IsvApi.cs">
-      <Link>IsvApi.cs</Link>
-    </Compile>
-    <Compile Include="..\Keyroads.DingtalkSDK.NetCore\IsvModel.cs">
-      <Link>IsvModel.cs</Link>
-    </Compile>
+    <Compile Include="CommonApi.cs" />
+    <Compile Include="CommonModel.cs" />
+    <Compile Include="CorpApi.cs" />
+    <Compile Include="CorpModel.cs" />
+    <Compile Include="Cryptography.cs" />
+    <Compile Include="DingTalkCrypt.cs" />
+    <Compile Include="IAccessTokenCacher.cs" />
+    <Compile Include="IJsApiTicketCacher.cs" />
+    <Compile Include="IsvApi.cs" />
+    <Compile Include="IsvModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
